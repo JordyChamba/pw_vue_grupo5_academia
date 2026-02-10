@@ -8,7 +8,9 @@
           v-model="cedulaBuscar"
           placeholder="buscar por cédula estudiante"
         />
-        <button class="btn" @click="buscar">Buscar</button>
+        <div class="container_btn">
+          <button class="btn" @click="buscar">Buscar</button>
+        </div>
       </p>
     </div>
     <div class="datos">
@@ -199,5 +201,14 @@ button[v-show="acciones"] {
   cursor: pointer;
   font-size: 14px;
   font-weight: bold;
+}
+.container_btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  width: 100%;
+  max-width: 800px;
+  margin-bottom: 20px;
 }
 </style>
