@@ -3,10 +3,10 @@
     <div class="container_buscar">
       <p class="buscar">
         <input
-          type="text"
-          id="codigo_buscar"
-          v-model="codigoBuscar"
-          placeholder="buscar por código"
+          type="number"
+          id="cedula_buscar"
+          v-model="cedulaBuscar"
+          placeholder="buscar por cédula"
         />
         <button class="btn" @click="buscar">Buscar</button>
       </p>
@@ -15,23 +15,27 @@
       <table class="table">
         <thead class="thead">
           <tr>
-            <th>Codigo</th>
+            <th>Cédula</th>
             <th>Nombre</th>
-            <th>Cupos</th>
+            <th>Apellido</th>
+            <th>Carrera</th>
+            <th>Teléfono</th>
             <th v-show="acciones">Acción</th>
             <th v-show="acciones">Acción</th>
           </tr>
         </thead>
         <tbody>
-          <tr v-for="curso in curso" :key="curso.id">
-            <td>{{ curso.codigoCurso }}</td>
-            <td>{{ curso.nombre }}</td>
-            <td>{{ curso.cupos }}</td>
+          <tr v-for="est in estudiantes" :key="est.id">
+            <td>{{ est.cedula }}</td>
+            <td>{{ est.nombre }}</td>
+            <td>{{ est.apellido }}</td>
+            <td>{{ est.carrera }}</td>
+            <td>{{ est.telefono }}</td>
             <td v-show="acciones">
-              <button class="edi" @click="editar(curso.id)">Editar</button>
+              <button class="edi" @click="editar(est.id)">Editar</button>
             </td>
             <td v-show="acciones">
-              <button class="eli" @click="eliminar(curso.id)">Eliminar</button>
+              <button class="eli" @click="eliminar(est.id)">Eliminar</button>
             </td>
           </tr>
         </tbody>
@@ -41,25 +45,19 @@
   </div>
 </template>
 
-
 <script>
 import {
-  mostrarPorIdFachada,
-  mostrarPorCodigoFachada,
   mostrarTodosFachada,
+  mostrarPorCedulaFachada,
   borrarFachada,
-} from "@/clients/CursoClient";
+} from "@/clients/EstudianteClient";
+
 export default {
   data() {
     return {
       acciones: false,
-      codigoBuscar: "",
-      curso: {
-        id: "",
-        codigoCurso: "",
-        nombre: "",
-        cupos: "",
-      },
+      cedulaBuscar: "",
+      estudiantes: [],
     };
   },
   mounted() {
@@ -69,41 +67,39 @@ export default {
     async Todos() {
       const resp = await mostrarTodosFachada();
       if (resp) {
-        console.log(resp);
-        this.curso = resp;
+        this.estudiantes = resp;
       }
     },
     async buscar() {
       try {
-        const resp = await mostrarPorCodigoFachada(this.codigoBuscar);
+        const resp = await mostrarPorCedulaFachada(this.cedulaBuscar);
         if (resp) {
-          this.curso = [resp];
+          this.estudiantes = [resp];
           this.acciones = true;
-          this.codigoBuscar = "";
+          this.cedulaBuscar = "";
         }
       } catch {
-        this.codigoBuscar = "";
+        this.cedulaBuscar = "";
         this.$emit("txt", 4);
       }
     },
     regresar() {
       this.Todos();
       this.acciones = false;
-      console.log("buscar", this.curso);
     },
     editar(id) {
       this.$emit("editar", id);
     },
-
     async eliminar(id) {
       await borrarFachada(id);
       this.Todos();
       this.acciones = false;
-      this.idBuscar = "";
+      this.cedulaBuscar = "";
       this.$emit("txt", 3);
     },
   },
 };
+
 </script>
 
 <style scoped>
@@ -117,19 +113,27 @@ export default {
 
 .datos {
   width: 100%;
-  max-width: 500px;
+  max-width: 800px;
   background: #fff;
   padding: 20px;
   border-radius: 10px;
   box-shadow: 0 6px 18px rgba(0, 0, 0, 0.1);
 }
 
-.container-buscar {
+.container_buscar {
   display: flex;
   align-items: center;
-  justify-content: flex-end;
+  justify-content: center;
+  gap: 10px;
+  width: 100%;
+  max-width: 800px;
+  margin-bottom: 20px;
+}
+p.buscar {
+  display: flex;
   gap: 10px;
 }
+
 input {
   flex: 1;
   height: 42px;
@@ -154,14 +158,7 @@ button.btn:hover {
   background: #574b90;
   transform: scale(1.03);
 }
-.datos {
-  margin: 30px auto;
-  max-width: 800px;
-  background: #fff;
-  padding: 20px;
-  border-radius: 10px;
-  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.1);
-}
+
 .table {
   width: 100%;
   border-collapse: collapse;
@@ -172,7 +169,7 @@ button.btn:hover {
   padding: 12px 15px;
   text-align: center;
   background-color: #847fe0;
-  color: white; 
+  color: white;
   font-weight: bold;
 }
 
@@ -182,7 +179,7 @@ button.btn:hover {
   border-bottom: 1px solid #ddd;
 }
 button.edi {
-  background: #4caf50; 
+  background: #4caf50;
   color: white;
   border: 5px;
   border-radius: 8px;

@@ -36,7 +36,7 @@ export default {
       if (token != "") {
         localStorage.setItem("token", token);
         localStorage.setItem("estaAutenticado", true);
-        this.$router.push({ name: "mostrarCursos" });
+        this.$router.push({ name: "mostrarEstudiantes" });
       } else {
         setTimeout(() => { this.mensaje = 'Usuario o Contraseña incorrectos';}, 4000);
       }
