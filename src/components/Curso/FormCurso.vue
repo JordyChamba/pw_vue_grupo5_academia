@@ -184,7 +184,6 @@ export default {
   text-align: left;
 }
 
-
 h3 {
   text-align: center;
   margin-bottom: 30px;
@@ -201,6 +200,21 @@ form {
 
 .datos {
 
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.datos label {
+  font-weight: 600;
+  color: #34495e;
+  font-size: 14px;
+  margin-bottom: 5px;
+  display: block;
+}
+
+
+.datos {
   display: flex;
   flex-direction: column;
   gap: 15px;

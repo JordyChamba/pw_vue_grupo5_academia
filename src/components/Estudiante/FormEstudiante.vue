@@ -223,6 +223,14 @@ h3 {
   font-weight: 700;
 }
 
+h3 {
+  text-align: center;
+  margin-bottom: 30px;
+  color: #2c3e50;
+  font-size: 24px;
+  font-weight: 700;
+}
+
 .formulario {
   display: flex;
   flex-direction: column;
