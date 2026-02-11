@@ -223,6 +223,12 @@ h3 {
   font-weight: 700;
 }
 
+form {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
 .datos {
   display: flex;
   flex-direction: column;
