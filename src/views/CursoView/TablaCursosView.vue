@@ -24,15 +24,20 @@
       />
     </div>
   </div>
+  <footer>
+    <FooterPie/>
+  </footer>
 </template>
 
-<script scoped>
+<script>
+import FooterPie from "@/components/FooterPie.vue";
 import TablaCursos from "@/components/Curso/TablaCursos.vue";
 import FormCurso from "@/components/Curso/FormCurso.vue";
 export default {
   components: {
     TablaCursos,
     FormCurso,
+    FooterPie,
   },
   data() {
     return {
