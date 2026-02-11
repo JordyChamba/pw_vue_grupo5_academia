@@ -6,7 +6,7 @@
           type="number"
           id="cedula_buscar"
           v-model="cedulaBuscar"
-          placeholder="buscar por cédula"
+          placeholder="Cédula del estudiante"
         />
         <button class="btn" @click="buscar">Buscar</button>
       </p>
@@ -41,7 +41,7 @@
         </tbody>
       </table>
     </div>
-    <button v-show="acciones" @click="regresar">Regresar</button>
+    <button class="btn-regresar" v-show="acciones" @click="regresar">Regresar</button>
   </div>
 </template>
 
@@ -108,110 +108,149 @@ export default {
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  margin: 40px auto;
+  margin: 30px auto;
+  font-family: 'Inter', sans-serif;
 }
 
 .datos {
   width: 100%;
-  max-width: 800px;
+  max-width: 900px;
   background: #fff;
-  padding: 20px;
-  border-radius: 10px;
-  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.1);
+  padding: 30px;
+  border-radius: 12px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
 }
 
 .container_buscar {
   display: flex;
   align-items: center;
   justify-content: center;
-  gap: 10px;
   width: 100%;
-  max-width: 800px;
-  margin-bottom: 20px;
+  max-width: 900px;
+  margin-bottom: 25px;
 }
+
 p.buscar {
   display: flex;
-  gap: 10px;
+  flex-direction: column;
+  gap: 15px;
+  width: 100%;
+  justify-content: center;
+  align-items: center;
 }
 
 input {
   flex: 1;
-  height: 42px;
-  width: 250px;
-  padding: 6px;
-  border: 1px solid #ccc;
-  border-radius: 6px;
-  font-size: 14px;
+  max-width: 400px;
+  padding: 12px 20px;
+  border: 1px solid #dfe6e9;
+  border-radius: 8px;
+  font-size: 15px;
+  background-color: #fcfcfc;
+  transition: all 0.3s;
 }
+
+input:focus {
+  border-color: #4CAF50;
+  background-color: #fff;
+  box-shadow: 0 0 0 3px rgba(76, 175, 80, 0.15);
+  outline: none;
+}
+
 button.btn {
-  height: 35px;
-  width: 100px;
-  background: #6c63ff;
+  padding: 12px 30px;
+  background: #4CAF50;
   color: white;
   border: none;
   border-radius: 8px;
   cursor: pointer;
-  font-size: 12px;
-  font-weight: bold;
+  font-size: 14px;
+  font-weight: 600;
+  transition: all 0.2s;
+  box-shadow: 0 2px 5px rgba(76, 175, 80, 0.2);
 }
+
 button.btn:hover {
-  background: #574b90;
-  transform: scale(1.03);
+  background: #45a049;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 10px rgba(76, 175, 80, 0.3);
 }
 
 .table {
   width: 100%;
   border-collapse: collapse;
-  font-family: Arial, sans-serif;
+  margin-top: 10px;
 }
 
 .table thead th {
-  padding: 12px 15px;
-  text-align: center;
-  background-color: #847fe0;
-  color: white;
-  font-weight: bold;
+  padding: 15px;
+  text-align: left;
+  background-color: #f8f9fa;
+  color: #7f8c8d;
+  font-weight: 600;
+  font-size: 14px;
+  border-bottom: 2px solid #eaebec;
 }
 
 .table td {
-  padding: 8px 11px;
-  text-align: center;
-  border-bottom: 1px solid #ddd;
-}
-button.edi {
-  background: #4caf50;
-  color: white;
-  border: 5px;
-  border-radius: 8px;
-  width: 80px;
+  padding: 15px;
+  text-align: left;
+  border-bottom: 1px solid #f0f0f0;
+  color: #2c3e50;
+  font-size: 14px;
 }
 
-.table button.edi:hover {
-  background: #357a37;
+.table tbody tr:hover {
+  background-color: #fafbfc;
+}
+
+button.edi, button.eli {
+  padding: 8px 16px;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 12px;
+  font-weight: 600;
+  width: auto;
+  min-width: 70px;
+  transition: all 0.2s;
+}
+
+button.edi {
+  background-color: #e8f5e9;
+  color: #2ecc71;
+}
+
+button.edi:hover {
+  background-color: #dcedc8;
+  color: #27ae60;
 }
 
 button.eli {
-  background: #ca1306;
-  color: white;
-  border: 5px;
-  border-radius: 8px;
-  width: 80px;
+  background-color: #ffebee;
+  color: #e74c3c;
 }
 
-.table button.eli:hover {
-  background: #891f1f;
-  border: none;
+button.eli:hover {
+  background-color: #ffcdd2;
+  color: #c0392b;
 }
 
-button[v-show="acciones"] {
-  margin-top: 15px;
-  padding: 10px 20px;
-  background: #6c63ff;
+.btn-regresar {
+  margin-top: 25px;
+  padding: 12px 30px;
+  background: #95a5a6;
   color: white;
   border: none;
   border-radius: 8px;
   cursor: pointer;
   font-size: 14px;
-  font-weight: bold;
+  font-weight: 600;
+  transition: all 0.2s;
+}
+
+.btn-regresar:hover {
+  background: #7f8c8d;
+  transform: translateY(-2px);
 }
 </style>

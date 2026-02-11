@@ -136,87 +136,110 @@ export default {
 
 <style scoped>
 .container {
-  max-width: 500px;
-  margin: 10px auto;
-  padding: 25px;
-  background: linear-gradient(to right, #40e0d0, #b19cd9); /* ejemplo con gradiente */
+  max-width: 600px;
+  margin: 30px auto;
+  padding: 40px;
+  background: #ffffff;
   border-radius: 12px;
-  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.1);
-  font-family: Arial, sans-serif;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
+  font-family: 'Inter', sans-serif;
+  text-align: left;
+}
+
+h3 {
+  text-align: center;
+  margin-bottom: 30px;
+  color: #2c3e50;
+  font-size: 24px;
+  font-weight: 700;
 }
 
 form {
   display: flex;
   flex-direction: column;
-  gap: 15px;
+  gap: 20px;
 }
 
 .datos {
   display: flex;
   flex-direction: column;
-  gap: 12px;
+  gap: 15px;
 }
 
 .datos label {
-  text-align: left;
-  font-weight: bold;
-  color: #555;
-  margin-bottom: 4px;
-}
-.error-msg {
-  color: #ca1306;
-  font-size: 11px;
-  font-weight: bold;
-  margin-bottom: -8px;
-  text-align: left;
+  font-weight: 600;
+  color: #34495e;
+  font-size: 14px;
+  margin-bottom: 5px;
+  display: block;
 }
 
 input {
-  height: 42px;
-  padding: 10px;
-  border: 1px solid #ccc;
+  width: 100%;
+  padding: 12px;
+  border: 1px solid #dfe6e9;
   border-radius: 8px;
-  font-size: 14px;
+  font-size: 15px;
+  color: #2c3e50;
+  background-color: #f9f9f9;
+  transition: all 0.3s ease;
   box-sizing: border-box;
-  background-color: white;
-  transition: border-color 0.3s, box-shadow 0.3s;
 }
 
 input:focus {
   border-color: #6c63ff;
-  box-shadow: 0 0 6px rgba(108, 99, 255, 0.4);
+  background-color: #fff;
+  box-shadow: 0 0 0 3px rgba(108, 99, 255, 0.15);
   outline: none;
 }
 
+.botones {
+  display: flex;
+  justify-content: center;
+  gap: 15px;
+  margin-top: 20px;
+}
+
 button {
-  height: 35px;
-  width: 100px;
+  padding: 12px 24px;
   border: none;
   border-radius: 8px;
   cursor: pointer;
-  font-size: 12px;
-  font-weight: bold;
-  margin-left: 20px;
-  margin-top: 25px;
+  font-size: 14px;
+  font-weight: 600;
+  transition: all 0.2s ease;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.1);
 }
 
-.botones button:hover {
-  transform: scale(1.05);
+button:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 8px rgba(0,0,0,0.15);
 }
 
 .botones button:nth-child(1) {
-  background: #4caf50;
+  background: #6c63ff;
   color: white;
+}
+
+.botones button:nth-child(1):hover {
+  background: #5a52d5;
 }
 
 .botones button:nth-child(2) {
-  background: #f95d52;
+  background: #ff6b6b;
   color: white;
 }
 
-h3 {
-  text-align: center;
-  margin-top: 20px;
-  color: #333;
+.botones button:nth-child(2):hover {
+  background: #fa5252;
+}
+
+.error-msg {
+  color: #e74c3c;
+  font-size: 12px;
+  font-weight: 500;
+  margin-top: -10px;
+  margin-bottom: 5px;
+  display: block;
 }
 </style>

@@ -1,22 +1,30 @@
 <template>
-  <div class="container">
-    <h2>Login</h2>
-    <div class="login">
-      <label for="usuario">Usuario</label>
-      <input type="text" id="usuario" v-model="usuario" placeholder="Usuario" />
-      <label for="password">Password</label>
-      <input
-        type="password"
-        id="password"
-        v-model="password"
-        placeholder="Password"
-      />
+  <div class="login-wrapper">
+    <div class="container">
+      <h2>Bienvenido</h2>
+      <p class="subtitle">Inicia sesión en tu cuenta</p>
+      <div class="login">
+        <div class="input-group">
+          <label for="usuario">Usuario</label>
+          <input type="text" id="usuario" v-model="usuario" placeholder="Ingresa tu usuario" />
+        </div>
+        <div class="input-group">
+          <label for="password">Contraseña</label>
+          <input
+            type="password"
+            id="password"
+            v-model="password"
+            placeholder="Ingresa tu contraseña"
+          />
+        </div>
 
-      <button @click="ingresar(usuario, password)">Ingresar</button>
+        <button @click="ingresar(usuario, password)">INGRESAR</button>
+      </div>
+
+      <div v-if="mensaje" class="error-message">
+        {{ mensaje }}
+      </div>
     </div>
-  </div>
-  <div v-if="mensaje" class="error">
-    <h1>{{ mensaje }}</h1>
   </div>
 </template>
 
@@ -39,7 +47,8 @@ export default {
         this.$router.push({ name: "mostrarEstudiantes" });
         console.log("ESTA LOGUEADO");
       } else {
-        setTimeout(() => { this.mensaje = 'Usuario o Contraseña incorrectos';}, 4000);
+        this.mensaje = 'Usuario o Contraseña incorrectos';
+        setTimeout(() => { this.mensaje = '';}, 4000);
       }
     },
   },
@@ -47,34 +56,41 @@ export default {
 </script>
 
 <style scoped>
+.login-wrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 100vh;
+  background-color: #f0f2f5;
+  
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 1000;
+}
+
 .container {
   width: 100%;
-  max-width: 300px;
-  margin: 100px auto;
-  padding: 35px;
-  background: linear-gradient(135deg, #74ebd5 0%, #9face6 100%);
-  border-radius: 12px;
-  box-shadow: 0 6px 15px rgba(0, 0, 0, 0.15);
-}
-.error {
-  width: 100%;
-  max-width: 300px;
-  margin: 100px auto;
-  padding: 35px;
-  background: linear-gradient(135deg, #ea3c3c 0%, #e12b13 100%);
-  border-radius: 12px;
-  box-shadow: 0 6px 15px rgba(0, 0, 0, 0.15);
-}
-.error h1 {
-  margin-bottom: 20px;
-  color: #ffffff;
-  font-size: 24px;
+  max-width: 400px;
+  padding: 40px;
+  background-color: #ffffff;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  text-align: center;
 }
 
 .container h2 {
-  margin-bottom: 20px;
+  margin-bottom: 10px;
   color: #333;
-  font-size: 24px;
+  font-size: 26px;
+  font-weight: bold;
+}
+
+.subtitle {
+  margin-bottom: 25px;
+  color: #666;
+  font-size: 14px;
 }
 
 .login {
@@ -83,43 +99,57 @@ export default {
   gap: 15px;
 }
 
-.login label {
+.input-group {
   text-align: left;
+}
+
+.login label {
+  display: block;
+  margin-bottom: 5px;
   font-weight: 600;
-  color: #555;
+  color: #444;
   font-size: 14px;
 }
 
 .login input {
-  width: 220px;
-  height: 35px;
-  padding: 8px;
+  width: 100%;
+  padding: 10px;
   border: 1px solid #ccc;
-  border-radius: 8px;
+  border-radius: 5px;
   font-size: 15px;
+  color: #333;
   box-sizing: border-box;
 }
 
 .login input:focus {
-  border-color: #6c63ff;
-  box-shadow: 0 0 6px rgba(108, 99, 255, 0.4);
+  border-color: #4CAF50;
   outline: none;
 }
 
 .login button {
-  height: 35px;
-  width: 225px;
-  background: #6c63ff;
+  width: 100%;
+  padding: 12px;
+  background-color: #4CAF50;
   color: white;
   border: none;
-  border-radius: 8px;
+  border-radius: 5px;
   cursor: pointer;
-  font-size: 14px;
+  font-size: 16px;
   font-weight: bold;
+  margin-top: 10px;
 }
 
 .login button:hover {
-  background: #574b90;
-  transform: scale(1.03);
+  background-color: #45a049;
+}
+
+.error-message {
+  margin-top: 20px;
+  padding: 10px;
+  background-color: #fdecea;
+  color: #d93025;
+  border: 1px solid #fad2cf;
+  border-radius: 4px;
+  font-size: 14px;
 }
 </style>

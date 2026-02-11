@@ -1,57 +1,78 @@
 <template>
-  <div>
-    <footer>
-      <p>© 2026 Mi Sitio Web Academia</p>
-      <nav>
-        <a>UCE</a>  |
-        <a>Política de Privacidad</a>  |
-        <a>Grupo 5:</a>
-         </nav>
-         <nav>
-        <p>Chamba Jordy, Florez Yaniry, Loya Bryan, Parra Rensso, Pozo Kevin, Tapia Freddy,Trujillo Dennis</p>
-         
-        
-     </nav>
-    </footer>
-  </div>
+  <footer class="app-footer">
+    <div class="footer-content">
+      <p class="copyright">© 2026 Academia Grupo 5. Todos los derechos reservados.</p>
+      <div class="team-section">
+        <span class="team-label">Equipo de Desarrollo:</span>
+        <p class="team-members">
+          Chamba Jordy • Florez Yaniry • Loya Bryan • Parra Rensso • Pozo Kevin • Tapia Freddy • Trujillo Dennis
+        </p>
+      </div>
+    </div>
+  </footer>
 </template>
 
 <style scoped>
-footer {
-  background: linear-gradient(to right, #40e0d0, #b19cd9); /* ejemplo con gradiente */
-  padding: 12px;
+.app-footer {
+  background-color: #ffffff;
+  border-top: 2px solid #4CAF50; 
+  padding: 30px 20px;
+  margin-top: auto; 
+  font-family: 'Inter', sans-serif;
+}
+
+.footer-content {
+  max-width: 1200px;
+  margin: 0 auto;
   text-align: center;
-  color: #333;
-  font-family: Arial, sans-serif;
-  height: 140px;
+  color: #7f8c8d;
 }
 
-nav{
-  height: 4px;
-}
-footer p{
-  height: 10px;
-  font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+.copyright {
   font-size: 14px;
+  font-weight: 500;
+  margin-bottom: 15px;
 }
 
-footer nav a {
-  height: 20px;
-  color: #333;
+.footer-nav {
+  margin-bottom: 20px;
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+}
+
+.footer-nav a {
+  color: #5d6d7e;
   text-decoration: none;
-  margin: 0 8px;
-  margin-left: 35px;
-  font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+  font-size: 13px;
+  transition: color 0.2s;
 }
 
-footer nav a:hover {
-  color: #000;
+.footer-nav a:hover {
+  color: #4CAF50; 
 }
 
-.grupo5 {
-  font-size: small;
+.team-section {
+  border-top: 1px solid #f0f0f0;
+  padding-top: 15px;
   margin-top: 15px;
-  color: #444;
 }
 
+.team-label {
+  display: block;
+  font-size: 12px;
+  font-weight: 700;
+  color: #4CAF50; 
+  margin-bottom: 5px;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.team-members {
+  font-size: 12px;
+  line-height: 1.6;
+  color: #95a5a6;
+  max-width: 800px;
+  margin: 0 auto;
+}
 </style>
