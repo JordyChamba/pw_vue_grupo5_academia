@@ -6,8 +6,6 @@ import EstudianteView from '@/views/EstudianteView/EstudianteView.vue'
 import MatriculaView from '@/views/MatriculaView/MatriculaView.vue'
 
 const routes = [
-
-
   {
     path: '/',
     redirect: '/login'

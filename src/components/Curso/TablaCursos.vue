@@ -37,7 +37,9 @@
         </tbody>
       </table>
     </div>
-    <button class="btn-regresar" v-show="acciones" @click="regresar">Regresar</button>
+    <button class="btn-regresar" v-show="acciones" @click="regresar">
+      Regresar
+    </button>
   </div>
 </template>
 
@@ -96,11 +98,18 @@ export default {
     },
 
     async eliminar(id) {
-      await borrarFachada(id);
-      this.Todos();
-      this.acciones = false;
-      this.idBuscar = "";
-      this.$emit("txt", 3);
+      try {
+        await borrarFachada(id);
+        this.Todos();
+        this.acciones = false;
+        this.idBuscar = "";
+        this.$emit("txt", 3);
+      } catch(error) {
+        this.codigoBuscar = "";
+        if (error.response && error.response.status === 409) {
+          this.$emit("txt", 5);
+        }
+      }
     },
   },
 };
@@ -113,7 +122,7 @@ export default {
   align-items: center;
   justify-content: center;
   margin: 30px auto;
-  font-family: 'Inter', sans-serif;
+  font-family: "Inter", sans-serif;
 }
 
 .datos {
@@ -156,7 +165,7 @@ input {
 }
 
 input:focus {
-  border-color: #4CAF50; /* Green focus */
+  border-color: #4caf50; /* Green focus */
   background-color: #fff;
   box-shadow: 0 0 0 3px rgba(76, 175, 80, 0.15); /* Green shadow */
   outline: none;
@@ -164,7 +173,7 @@ input:focus {
 
 button.btn {
   padding: 12px 30px;
-  background: #4CAF50; /* Green button */
+  background: #4caf50; /* Green button */
   color: white;
   border: none;
   border-radius: 8px;
@@ -210,7 +219,8 @@ button.btn:hover {
 }
 
 /* Action Buttons in Table */
-button.edi, button.eli {
+button.edi,
+button.eli {
   padding: 8px 16px;
   border: none;
   border-radius: 6px;

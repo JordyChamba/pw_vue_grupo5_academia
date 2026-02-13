@@ -96,6 +96,11 @@ export default {
         this.tipoMensaje = "error";
         this.tiempo();
       }
+      if(msj == 5) {
+        this.mensaje = "No se puede borrar el registro";
+        this.tipoMensaje = "error";
+        this.tiempo();
+      }
     },
     tiempo() {
       setTimeout(() => {

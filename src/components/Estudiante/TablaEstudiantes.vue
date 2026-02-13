@@ -91,11 +91,17 @@ export default {
       this.$emit("editar", id);
     },
     async eliminar(id) {
-      await borrarFachada(id);
+      try{await borrarFachada(id);
       this.Todos();
       this.acciones = false;
       this.cedulaBuscar = "";
       this.$emit("txt", 3);
+      }catch(error){
+         this.codigoBuscar = "";
+        if (error.response && error.response.status === 409) {
+          this.$emit("txt", 5);
+        }
+      }
     },
   },
 };

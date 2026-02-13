@@ -112,8 +112,10 @@ const borrar = async (id) => {
     } catch (error) {
 
         manejarError(error);
+        
 
     }
+    
 
 };
 
