@@ -13,21 +13,22 @@
         </div>
       </div>
     </div>
-    <div v-show="acciones" class="datos">
+    <div class="datos">
       <table class="table">
         <thead class="thead">
           <tr>
             <th>ID</th>
+            <th>Cédula</th>
             <th>Estudiante</th>
             <th>Curso</th>
-            <th>Fecha</th>
             <th>Estado Matricula</th>
-            <th>Acción</th>
+            <th v-show="acciones">Acción</th>
           </tr>
         </thead>
         <tbody>
           <tr v-for="mat in matriculas" :key="mat.id">
             <td>{{ mat.id }}</td>
+            <td>{{ mat.estudiante.cedula }}</td>
             <td>
               {{
                 mat.estudiante
@@ -36,10 +37,9 @@
               }}
             </td>
             <td>{{ mat.curso ? mat.curso.nombre : "N/A" }}</td>
-            <td>{{ mat.fecha }}</td>
             <td>{{ mat.estado }}</td>
-            <td v-show="validar(mat.estado)">
-              <button class="edi" @click="editar(mat.id)">Anular</button>
+            <td v-show="acciones">
+              <button v-show="validar(mat.estado)" class="edi" @click="editar(mat.id)">Anular</button>
             </td>
           </tr>
         </tbody>
@@ -53,6 +53,7 @@
 import {
   mostrarPorCedulaEstudianteFachada,
   borrarFachada,
+  mostrarTodosFachada,
 } from "@/clients/MatriculaClient";
 
 export default {
@@ -63,8 +64,18 @@ export default {
       matriculas: [],
     };
   },
-
+  mounted() {
+    this.Todos();
+  },
   methods: {
+    async Todos() {
+      const resp = await mostrarTodosFachada();
+      if (resp) {
+        console.log(resp);
+        this.matriculas = resp;
+        this.acciones = false;
+      }
+    },
     validar(estado) {
       if (estado === "ANULADA") {
         return false;
@@ -90,11 +101,13 @@ export default {
     },
     async editar(id) {
       await borrarFachada(id);
+      this.Todos();
       this.acciones = false;
       this.cedulaBuscar = "";
       this.$emit("txt", 3);
     },
     regresar() {
+      this.Todos();
       this.acciones = false;
     },
   },

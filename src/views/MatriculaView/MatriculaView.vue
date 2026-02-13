@@ -17,6 +17,7 @@
 
       <TablaMatricula
         v-if="!mostrar"
+        @editar="recibecodigo"
         @txt="recibeMensaje"
       />
 
